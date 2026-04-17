@@ -1,18 +1,18 @@
 import java.util.concurrent.Semaphore;
 
-class TableTwoWaiters {
+class TableWaiter {
     private final Semaphore[] forks = new Semaphore[5];
 
-    private final Semaphore waiters = new Semaphore(2);
+    private final Semaphore waiter = new Semaphore(4);
 
-    public TableTwoWaiters() {
+    public TableWaiter() {
         for (int i = 0; i < forks.length; i++) {
             forks[i] = new Semaphore(1);
         }
     }
 
     public void acquireForks(int right, int left) throws InterruptedException {
-        waiters.acquire();
+        waiter.acquire();
         forks[right].acquire();
         forks[left].acquire();
     }
@@ -20,6 +20,6 @@ class TableTwoWaiters {
     public void releaseForks(int left, int right) {
         forks[left].release();
         forks[right].release();
-        waiters.release();
+        waiter.release();
     }
 }

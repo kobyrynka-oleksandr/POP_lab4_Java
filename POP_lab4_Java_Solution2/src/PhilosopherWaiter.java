@@ -1,9 +1,9 @@
-class PhilosopherTwoWaiters extends Thread {
-    private final TableTwoWaiters table;
+class PhilosopherWaiter extends Thread {
+    private final TableWaiter table;
     private final int leftFork, rightFork;
     private final int id;
 
-    public PhilosopherTwoWaiters(int id, TableTwoWaiters table) {
+    public PhilosopherWaiter(int id, TableWaiter table) {
         this.id = id;
         this.table = table;
         rightFork = id;
